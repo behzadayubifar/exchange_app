@@ -1,5 +1,6 @@
 import 'package:exchange/gen/assets.gen.dart';
 import 'package:exchange/route_manager/route_names.dart';
+import 'package:exchange/view/widgets/home/section_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -9,62 +10,92 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: ListView(
-      scrollDirection: Axis.horizontal,
+        body: Stack(
       children: [
-        SectionWidget(title: "ارز", image: Assets.images.dolar.image(scale: 6)),
+        // BG
+        Assets.images.moneyBg.image(
+          fit: BoxFit.cover,
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
+        ),
+        // Content
+        Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            // name of app
+            Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const SizedBox(
+                  height: 50,
+                ),
+                SizedBox(
+                    height: 100,
+                    child: Assets.images.coinDolar.image(
+                      width: MediaQuery.of(context).size.width / 3,
+                    )),
+                const Text("چند و چون !",
+                    style: TextStyle(
+                        fontSize: 48,
+                        fontWeight: FontWeight.bold,
+                        color: Color.fromARGB(255, 218, 230, 5))),
+              ],
+            ),
+            Column(
+              mainAxisSize: MainAxisSize.min,
+              // mainAxisAlignment: MainAxisAlignment.center,
+              // crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SizedBox(
+                  height: Get.height / 4,
+                  width: Get.width,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SectionWidget(
+                        title: "ارز",
+                        image: Assets.images.dolar.image(scale: 6),
+                        routeName: NamedRoute.currencies,
+                      ),
+                      const SizedBox(
+                        width: 56,
+                      ),
+                      SectionWidget(
+                        title: "سکه",
+                        image: Assets.icons.coinAndMetals.coin.image(scale: 6),
+                        routeName: NamedRoute.coins,
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: Get.height / 4,
+                  width: Get.width,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SectionWidget(
+                        title: "طلا",
+                        image: Assets.icons.coinAndMetals.gold.image(scale: 6),
+                        routeName: NamedRoute.gold,
+                      ),
+                      const SizedBox(
+                        width: 56,
+                      ),
+                      SectionWidget(
+                        title: "کریپتو",
+                        image: Assets.icons.crypto.bitcoin.image(scale: 6),
+                        routeName: NamedRoute.cryptoes,
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
       ],
     ));
-  }
-}
-
-class SectionWidget extends StatelessWidget {
-  const SectionWidget({
-    super.key,
-    required this.title,
-    required this.image,
-  });
-
-  final String title;
-  final Image image;
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => Get.toNamed(NamedRoute.currencies),
-      child: Container(
-        decoration: BoxDecoration(
-          color: Color.fromARGB(143, 28, 28, 67),
-          shape: BoxShape.circle,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.5),
-              spreadRadius: 1,
-              blurRadius: 10,
-              offset: Offset(0, 3),
-            ),
-          ],
-        ),
-        width: MediaQuery.of(context).size.width / 3.6,
-        height: MediaQuery.of(context).size.height / 3.6,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SizedBox(
-              height: 10,
-            ),
-            image,
-            Text(
-              title,
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-          ],
-        ),
-      ),
-    );
   }
 }

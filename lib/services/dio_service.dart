@@ -9,9 +9,8 @@ class DioService {
       log(response.toString());
       return response;
     }).catchError((error) {
-      if (error is DioException) {
-        return error.response;
-      }
+      log(error.toString());
+      return error;
     });
   }
 }

@@ -4,56 +4,58 @@ import 'package:intl/intl.dart';
 class ExchangeWidget extends StatelessWidget {
   const ExchangeWidget({
     Key? key,
-    required this.title,
-    required this.date,
-    required this.rate,
-    required this.change,
-    required this.icon,
+    this.title,
+    this.date,
+    this.rate,
+    this.change,
+    this.icon,
   }) : super(key: key);
 
-  final Image icon;
-  final String title;
-  final String date;
-  final String rate;
-  final num change;
+  final Image? icon;
+  final String? title;
+  final String? date;
+  final String? rate;
+  final num? change;
 
   @override
   Widget build(BuildContext context) {
-    final a = NumberFormat.currency(locale: 'fa', symbol: ',')
-        .format(double.parse(rate));
-
     final isDecrease = change.toString().contains("-");
     return Container(
       padding: const EdgeInsets.all(8),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          SizedBox(
+          const SizedBox(
             width: 4,
           ),
-          icon,
+          icon!,
+
+          const SizedBox(
+            width: 8,
+          ),
           Column(
             children: [
               Text(
-                title,
+                title!,
                 style: const TextStyle(
-                  fontSize: 32,
+                  fontSize: 20,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               const SizedBox(height: 8),
               Text(
-                date,
+                date!,
                 style: const TextStyle(
                   fontSize: 12,
                 ),
               ),
             ],
           ),
-          SizedBox(
-            width: 64,
-          ),
+          // const SizedBox(
+          //   width: 64,
+          // ),
+          Expanded(child: Container()),
           Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
@@ -61,9 +63,9 @@ class ExchangeWidget extends StatelessWidget {
                 NumberFormat.currency(
                   locale: 'fa',
                   symbol: '',
-                ).format(double.parse(rate)),
+                ).format(double.parse(rate!)),
                 style: const TextStyle(
-                    fontSize: 32,
+                    fontSize: 24,
                     fontWeight: FontWeight.bold,
                     color: Color.fromARGB(255, 232, 224, 10)),
               ),
@@ -73,12 +75,14 @@ class ExchangeWidget extends StatelessWidget {
                     NumberFormat.currency(
                       locale: 'fa',
                       symbol: '',
-                    ).format(double.parse(change.toString().substring(1))),
+                    ).format(change),
                     style: TextStyle(
-                      fontSize: 24,
+                      fontSize: 16,
                       color: isDecrease
                           ? const Color.fromARGB(255, 244, 67, 54)
-                          : Colors.green,
+                          : change == 0
+                              ? Color.fromARGB(143, 229, 243, 165)
+                              : Colors.green,
                     ),
                   ),
                   isDecrease
@@ -86,15 +90,17 @@ class ExchangeWidget extends StatelessWidget {
                           Icons.arrow_downward,
                           color: Color.fromARGB(255, 244, 67, 54),
                         )
-                      : const Icon(
-                          Icons.arrow_upward,
-                          color: Colors.green,
-                        ),
+                      : change == 0
+                          ? const SizedBox()
+                          : const Icon(
+                              Icons.arrow_upward,
+                              color: Colors.green,
+                            ),
                 ],
               ),
             ],
           ),
-          SizedBox(),
+          const SizedBox(),
         ],
       ),
     );

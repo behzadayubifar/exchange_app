@@ -20,7 +20,8 @@ class MoneyController extends GetxController {
     AppController.isLoading.value = true;
     var response = await DioService().getMethod(ApiConstants.baseUrl);
     if (response.statusCode == 200) {
-      log(response);
+      moneyList.clear();
+      log(response.toString());
       (response.data as Map<String, dynamic>).forEach((key, value) {
         if (value is Map<String, dynamic>) {
           moneyList.add(Currency(

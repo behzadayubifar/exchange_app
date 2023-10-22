@@ -1,14 +1,14 @@
 class Currency {
-  final String name;
-  final String rate;
-  final change;
-  final String date;
+  final String? name;
+  final String? rate;
+  final num? change;
+  final String? date;
 
   const Currency({
-    required this.name,
-    required this.rate,
-    required this.change,
-    required this.date,
+    this.name,
+    this.rate,
+    this.change,
+    this.date,
   });
 
   @override

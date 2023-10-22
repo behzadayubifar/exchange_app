@@ -21,11 +21,34 @@ class $AssetsIconsGen {
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  /// File path: assets/images/Prosperity_Chart_09_.png
+  AssetGenImage get prosperityChart09 =>
+      const AssetGenImage('assets/images/Prosperity_Chart_09_.png');
+
+  /// File path: assets/images/coin_dolar.png
+  AssetGenImage get coinDolar =>
+      const AssetGenImage('assets/images/coin_dolar.png');
+
   /// File path: assets/images/dolar.png
   AssetGenImage get dolar => const AssetGenImage('assets/images/dolar.png');
 
+  /// File path: assets/images/money_bg.png
+  AssetGenImage get moneyBg =>
+      const AssetGenImage('assets/images/money_bg.png');
+
+  /// File path: assets/images/money_price_balance_dolar_equal_with_euro_finance.png
+  AssetGenImage get moneyPriceBalanceDolarEqualWithEuroFinance =>
+      const AssetGenImage(
+          'assets/images/money_price_balance_dolar_equal_with_euro_finance.png');
+
   /// List of all assets
-  List<AssetGenImage> get values => [dolar];
+  List<AssetGenImage> get values => [
+        prosperityChart09,
+        coinDolar,
+        dolar,
+        moneyBg,
+        moneyPriceBalanceDolarEqualWithEuroFinance
+      ];
 }
 
 class $AssetsIconsCoinAndMetalsGen {
@@ -54,13 +77,13 @@ class $AssetsIconsCoinAndMetalsGen {
 class $AssetsIconsCryptoGen {
   const $AssetsIconsCryptoGen();
 
-  /// File path: assets/icons/crypto/Bitcoin.png
-  AssetGenImage get bitcoin =>
-      const AssetGenImage('assets/icons/crypto/Bitcoin.png');
-
   /// File path: assets/icons/crypto/Ethereum.png
   AssetGenImage get ethereum =>
       const AssetGenImage('assets/icons/crypto/Ethereum.png');
+
+  /// File path: assets/icons/crypto/bitcoin.png
+  AssetGenImage get bitcoin =>
+      const AssetGenImage('assets/icons/crypto/bitcoin.png');
 
   /// File path: assets/icons/crypto/bitcoin1.png
   AssetGenImage get bitcoin1 =>
@@ -80,7 +103,7 @@ class $AssetsIconsCryptoGen {
 
   /// List of all assets
   List<AssetGenImage> get values =>
-      [bitcoin, ethereum, bitcoin1, dodge, etherium, tether];
+      [ethereum, bitcoin, bitcoin1, dodge, etherium, tether];
 }
 
 class $AssetsIconsFlagsGen {
